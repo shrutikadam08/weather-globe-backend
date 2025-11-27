@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from backend import fetcher
+import fetcher
 import os
 
 STATIC_DIR=os.path.join(os.path.dirname(__file__), "static")
