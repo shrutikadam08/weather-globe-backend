@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+requests
+xarray
+cfgrib
+netcdf4
+numpy
+aiofiles
+python-multipart
