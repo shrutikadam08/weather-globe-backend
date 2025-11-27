@@ -8,7 +8,7 @@ os.makedirs(STATIC_DIR, exist_ok=True)
 
 app=FastAPI(title="Real-Time Weather Backend")
 
-@app.onn_event("startup")
+@app.on_event("startup")
 def startup_event():
     fetcher.fetch_and_convert()
 
