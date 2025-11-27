@@ -24,3 +24,8 @@ def home():
         "/static/wind_u.json",
         "/static/wind_v.json"
     ]}
+
+import uvicorn
+
+def start():
+    uvicorn.run("backend.app:app",host="0.0.0.0", port=10000)
