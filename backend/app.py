@@ -10,17 +10,19 @@ import uvicorn
 # ------------------------------
 app = FastAPI(title="Real-Time Weather Backend")
 
-# Enable CORS for all domains
+# ------------------------------
+# Enable CORS for ALL domains
+# ------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # ------------------------------
-# Static File Directory
+# Static directory setup
 # ------------------------------
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 os.makedirs(STATIC_DIR, exist_ok=True)
@@ -28,14 +30,14 @@ os.makedirs(STATIC_DIR, exist_ok=True)
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 # ------------------------------
-# Startup Event (fetch weather)
+# Fetch weather data on startup
 # ------------------------------
 @app.on_event("startup")
 def startup_event():
     fetcher.fetch_and_convert()
 
 # ------------------------------
-# Home Route
+# Home route
 # ------------------------------
 @app.get("/")
 def home():
@@ -46,4 +48,12 @@ def home():
             "/static/humidity.json",
             "/static/pressure.json",
             "/static/wind_u.json",
-            "/static/wind
+            "/static/wind_v.json"
+        ]
+    }
+
+# ------------------------------
+# Uvicorn start function
+# ------------------------------
+def start():
+    uvicorn.run("backend.app:app", host="0.0.0.0", port=10000)
