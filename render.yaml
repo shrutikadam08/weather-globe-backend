@@ -14,4 +14,3 @@ cronJobs:
   - name: update-weather
     schedule: "0 */6 * * *"
     command: python backend/scheduler.py
-    
